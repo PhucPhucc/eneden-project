@@ -27,10 +27,14 @@ npx prettier --write .  # fix all formatting
 - **No tests** — no test framework installed.
 - **Pre-commit hook**: `.husky/pre-commit` runs `lint-staged` then `npm run type-check`. **Broken** — neither `lint-staged` config nor `type-check` script exist in `package.json`. Do not rely on it; use `pnpm build` or `pnpm lint` directly.
 
-## Prettier — mandatory after every edit
+## Prettier + lint — mandatory after every edit
 
 Project uses `eslint-plugin-prettier/recommended` (Prettier formatting enforced by ESLint).
-**After editing any file, always run** `npx prettier --write <file>` or `npx prettier --write .` to fix formatting. Otherwise, `pnpm lint` will fail on formatting issues.
+**After editing any file, always run:**
+1. `npx prettier --write <file>` or `npx prettier --write .` to fix formatting
+2. `pnpm lint` to verify no ESLint errors were introduced
+
+Both steps are required — `pnpm lint` will fail on formatting issues if Prettier is skipped, and may catch other rule violations.
 
 ## ESLint — traps for agents
 
