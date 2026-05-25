@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useTransform, motion, MotionValue } from "motion/react";
+import { motion, MotionValue, useScroll, useTransform } from "motion/react";
 import { ReactNode } from "react";
 
 interface ParallaxLayerProps {

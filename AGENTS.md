@@ -33,6 +33,7 @@ Project uses `eslint-plugin-prettier/recommended` (Prettier formatting enforced 
 **After editing any file, always run:**
 1. `npx prettier --write <file>` or `npx prettier --write .` to fix formatting
 2. `pnpm lint` to verify no ESLint errors were introduced
+3. **If `pnpm lint` still shows errors, fix them immediately until there are 0 errors.** Do not move on to another task while lint errors remain.
 
 Both steps are required — `pnpm lint` will fail on formatting issues if Prettier is skipped, and may catch other rule violations.
 

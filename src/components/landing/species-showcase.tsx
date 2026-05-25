@@ -8,6 +8,16 @@ const SAOLA_IMG =
 const LANGUR_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDTFWs_TouLPdxYYt8OsMenDfBkSr41uS4MClWV8Er2SYwLugQ3mC4QcFFqwXFFqaIU_ahrbpLBWVxl-ieTXbHmrdvy8gyEJa03b4t5MTnTlLh5z5JEETffpQ3pENR2kn92qJpdV4ilTwO3x6xkHJhwfZ3nv1GLM2w-iD-Edmox6lHMod1z7bGVs2i4tgbSvKanKeuh3ABgH-ETVDANIF7n_5DHPaXrRyfOyQh6qB3RzhBoD0cbxZn27dheROSDX5oQSTnakeh3qFw";
 
+const SS_LABEL = "Ghosts of the Canopy";
+const SS_CRITICAL = "Critically Endangered";
+const SS_SAOLA = "Saola";
+const SS_SAOLA_DESC =
+  "Known as the \u201cAsian Unicorn,\u201d the Saola is one of the rarest large mammals on Earth. Discovered only in 1992, it slips through the dense foliage like a spirit, a quiet observer of its own vanishing realm.";
+const SS_LANGUR = "Delacour\u2019s Langur";
+const SS_LANGUR_DESC =
+  "Restricted to a few isolated limestone karst forests, this strikingly patterned primate watches the encroaching world from high ledges. Their contemplative silence is broken only by the distant sounds of quarrying.";
+const SS_FIELD_NOTES = "Read Field Notes";
+
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -48,7 +58,7 @@ export function SpeciesShowcase() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          Ghosts of the Canopy
+          {SS_LABEL}
         </motion.h2>
 
         <motion.div
@@ -76,11 +86,11 @@ export function SpeciesShowcase() {
               <span className="inline-flex items-center gap-2 bg-[#353534]/80 backdrop-blur-sm px-3 py-1 rounded-full mb-3">
                 <span className="w-2 h-2 rounded-full bg-[#ffb4ab]" />
                 <span className="font-body text-[12px] leading-[1.2] font-[500] tracking-[0.1em] text-[#e5e2e1]">
-                  Critically Endangered
+                  {SS_CRITICAL}
                 </span>
               </span>
               <h3 className="font-display text-[40px] leading-[1.2] text-[#bec9c0]">
-                Saola
+                {SS_SAOLA}
               </h3>
             </div>
           </motion.div>
@@ -90,10 +100,7 @@ export function SpeciesShowcase() {
             variants={slideInRight}
           >
             <p className="font-body text-[18px] leading-[1.8] tracking-[0.01em] font-[300] text-[#c3c8c2]">
-              Known as the &ldquo;Asian Unicorn,&rdquo; the Saola is one of the
-              rarest large mammals on Earth. Discovered only in 1992, it slips
-              through the dense foliage like a spirit, a quiet observer of its
-              own vanishing realm.
+              {SS_SAOLA_DESC}
             </p>
             <div className="h-px w-full bg-[#434844]/30" />
             <ul className="space-y-4">
@@ -126,13 +133,10 @@ export function SpeciesShowcase() {
             variants={slideInLeft}
           >
             <h3 className="font-display text-[40px] leading-[1.2] text-[#bec9c0] mt-[16px]">
-              Delacour&apos;s Langur
+              {SS_LANGUR}
             </h3>
             <p className="font-body text-[18px] leading-[1.8] tracking-[0.01em] font-[300] text-[#c3c8c2]">
-              Restricted to a few isolated limestone karst forests, this
-              strikingly patterned primate watches the encroaching world from
-              high ledges. Their contemplative silence is broken only by the
-              distant sounds of quarrying.
+              {SS_LANGUR_DESC}
             </p>
             <motion.a
               className="inline-flex items-center gap-2 text-[#e9c176] hover:text-[#bec9c0] transition-colors mt-4 cursor-pointer"
@@ -141,7 +145,7 @@ export function SpeciesShowcase() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <span className="font-body text-[12px] leading-[1.2] font-[500] tracking-[0.1em] uppercase">
-                Read Field Notes
+                {SS_FIELD_NOTES}
               </span>
               <svg
                 width="14"

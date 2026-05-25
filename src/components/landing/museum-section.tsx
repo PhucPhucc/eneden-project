@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
 
@@ -113,12 +113,11 @@ const speciesList: Species[] = [
   },
 ];
 
-const statusDot = (color: string) => (
-  <span
-    className="inline-block w-1.5 h-1.5 rounded-full mr-1.5"
-    style={{ backgroundColor: color }}
-  />
-);
+const MUSEUM_BADGE = "Vietnam Red Data Book";
+const MUSEUM_HEADING = "B\u1ea3o t\xe0ng S\xe1ch \u0110\u1ecf";
+const MUSEUM_DESC =
+  "C\xe1c lo\xe0i \u0111\u1ed9ng v\u1eadt qu\xfd hi\u1ebfm trong S\xe1ch \u0110\u1ecf Vi\u1ec7t Nam \u2014 m\u1ed7i lo\xe0i l\xe0 m\u1ed9t c\xe2u chuy\u1ec7n v\u1ec1 s\u1ef1 s\u1ed1ng \u0111ang d\u1ea7n bi\u1ebfn m\u1ea5t.";
+const MUSEUM_COMING_SOON = "3D MODEL COMING SOON";
 
 export function MuseumSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -150,14 +149,13 @@ export function MuseumSection() {
           className="text-center mb-14"
         >
           <span className="inline-block px-3.5 py-1 rounded-full bg-white/5 text-white/40 font-body text-[10px] font-[500] tracking-[0.15em] uppercase mb-5">
-            Vietnam Red Data Book
+            {MUSEUM_BADGE}
           </span>
           <h2 className="font-display text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-[#e5e2e1] mb-3">
-            Bảo tàng Sách Đỏ
+            {MUSEUM_HEADING}
           </h2>
           <p className="font-body text-[15px] md:text-[17px] leading-[1.7] font-[300] text-[#c3c8c2] max-w-2xl mx-auto">
-            Các loài động vật quý hiếm trong Sách Đỏ Việt Nam — mỗi loài là một
-            câu chuyện về sự sống đang dần biến mất.
+            {MUSEUM_DESC}
           </p>
         </motion.div>
 
@@ -265,7 +263,7 @@ export function MuseumSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/20 to-transparent" />
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/5">
                       <span className="font-body text-[10px] text-white/40 tracking-[0.1em]">
-                        3D MODEL COMING SOON
+                        {MUSEUM_COMING_SOON}
                       </span>
                     </div>
                   </div>

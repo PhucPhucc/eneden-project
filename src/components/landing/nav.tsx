@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  useScroll,
-  useMotionValueEvent,
-  motion,
   AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
 } from "motion/react";
 import { useState } from "react";
 
@@ -14,6 +14,11 @@ const navLinks = [
   { href: "#threats", label: "Threats" },
   { href: "#conservation", label: "Conservation" },
 ];
+
+const NAV_LOGO = "VC.";
+const NAV_TAGLINE = "Vanishing Canopies";
+const NAV_LEARN = "Learn More";
+const NAV_PROTECT = "Protect Now";
 
 export function Nav() {
   const { scrollY } = useScroll();
@@ -48,10 +53,10 @@ export function Nav() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 shrink-0">
           <span className="font-display text-[20px] tracking-[-0.03em] text-[#e9c176] leading-none">
-            VC.
+            {NAV_LOGO}
           </span>
           <span className="font-body text-[9px] tracking-[0.2em] uppercase text-white/20 font-[500] pt-[3px]">
-            Vanishing Canopies
+            {NAV_TAGLINE}
           </span>
         </a>
 
@@ -74,13 +79,13 @@ export function Nav() {
             href="#action"
             className="text-[12px] font-[500] text-white/35 hover:text-white/65 transition-colors duration-300 font-body"
           >
-            Learn More
+            {NAV_LEARN}
           </a>
           <a
             href="#action"
             className="text-[12px] font-[500] tracking-[0.01em] text-[#0e0e0e] bg-[#e9c176] hover:bg-[#d4ae5e] px-4 py-1.5 rounded-full transition-all duration-300 font-body"
           >
-            Protect Now
+            {NAV_PROTECT}
           </a>
         </div>
       </nav>
@@ -93,7 +98,7 @@ export function Nav() {
       >
         <a href="#" className="flex items-center gap-2">
           <span className="font-display text-[18px] tracking-[-0.03em] text-[#e9c176] leading-none">
-            VC.
+            {NAV_LOGO}
           </span>
         </a>
 
@@ -164,14 +169,14 @@ export function Nav() {
                   onClick={() => setMobileOpen(false)}
                   className="block text-[14px] font-[500] text-white/40 hover:text-white/70 transition-colors duration-300 font-body"
                 >
-                  Learn More
+                  {NAV_LEARN}
                 </a>
                 <a
                   href="#action"
                   onClick={() => setMobileOpen(false)}
                   className="inline-block text-[13px] font-[500] tracking-[0.01em] text-[#0e0e0e] bg-[#e9c176] hover:bg-[#d4ae5e] px-6 py-2.5 rounded-full transition-all duration-300 font-body"
                 >
-                  Protect Now
+                  {NAV_PROTECT}
                 </a>
               </div>
             </div>

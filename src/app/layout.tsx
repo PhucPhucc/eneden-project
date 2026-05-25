@@ -1,13 +1,13 @@
 import "./globals.css";
+import "./globals.css";
 
 import type { Metadata } from "next";
 import {
+  Be_Vietnam_Pro,
+  EB_Garamond,
   Geist,
   Geist_Mono,
-  EB_Garamond,
-  Be_Vietnam_Pro,
 } from "next/font/google";
-import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

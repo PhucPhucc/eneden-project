@@ -1,14 +1,15 @@
 "use client";
 
 import {
-  useScroll,
-  useMotionValueEvent,
-  useTransform,
   motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
 } from "motion/react";
 import { useRef, useState } from "react";
-import { ParticleSystem } from "./particle-system";
+
 import { ParallaxLayer } from "./parallax-layer";
+import { ParticleSystem } from "./particle-system";
 
 const SAOLA_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuB43Xbwa16X-5I6aQwCCVxPh3Gvw7NHan0cJfu1Glmn5rIDmMjrkYRDFrUL6C1EHU_jvK4TzX0yl65TNxBFcBDKEjDrLW7XbBPrlkpvtYVQixv1M4K2ctP7bjp9CU2hP_aeism4N3bN1z8ZEDxO3aXaZtM1E-m1vqivKffTsdwK9ebv8CAMp1DEBC86muc33k3jcH5Sbrz1RCFNM-v0gG8YEucpSWUTS04qTRt1c8kS9lSYv6BO6O7j6hbO3UUDbaAZUY4EBc38rMg";
@@ -203,7 +204,6 @@ export function ScrollStory() {
         {panels.map((panel, idx) => {
           const isActive = activeIndex === idx;
           const isPast = activeIndex > idx;
-          const isFuture = activeIndex < idx;
 
           return (
             <motion.div

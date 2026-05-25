@@ -1,10 +1,10 @@
-import { Nav } from "@/components/landing/nav";
-import { Hero } from "@/components/landing/hero";
 import { AtmosphericQuote } from "@/components/landing/atmospheric-quote";
-import { ScrollStory } from "@/components/landing/scroll-story";
-import { MuseumSection } from "@/components/landing/museum-section";
 import { CTASection } from "@/components/landing/cta-section";
 import { Footer } from "@/components/landing/footer";
+import { Hero } from "@/components/landing/hero";
+import { MuseumSection } from "@/components/landing/museum-section";
+import { Nav } from "@/components/landing/nav";
+import { ScrollStory } from "@/components/landing/scroll-story";
 
 export default function Home() {
   return (
