@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, EB_Garamond, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
