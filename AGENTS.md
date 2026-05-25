@@ -17,6 +17,7 @@ pnpm install
 pnpm dev          # starts on port 3002 (not 3000)
 pnpm build        # TypeScript check + production build via Turbopack
 pnpm lint         # ESLint v9 flat config
+npx prettier --write .  # fix all formatting
 ```
 
 ## Architecture
@@ -25,6 +26,11 @@ pnpm lint         # ESLint v9 flat config
 - **No data fetching** — fully static. No server components needed. Every landing component uses `"use client"`.
 - **No tests** — no test framework installed.
 - **Pre-commit hook**: `.husky/pre-commit` runs `lint-staged` then `npm run type-check`. **Broken** — neither `lint-staged` config nor `type-check` script exist in `package.json`. Do not rely on it; use `pnpm build` or `pnpm lint` directly.
+
+## Prettier — mandatory after every edit
+
+Project uses `eslint-plugin-prettier/recommended` (Prettier formatting enforced by ESLint).
+**After editing any file, always run** `npx prettier --write <file>` or `npx prettier --write .` to fix formatting. Otherwise, `pnpm lint` will fail on formatting issues.
 
 ## ESLint — traps for agents
 
