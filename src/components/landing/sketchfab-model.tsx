@@ -5,6 +5,13 @@ import { useInView } from "motion/react";
 import { useRef } from "react";
 
 const MODEL_ID = "a76eb200d5fc4100b4def2465c281010";
+const SKETCHFAB_BADGE = "3D Species Scan";
+const SKETCHFAB_TITLE = "Cá Thù Lù";
+const SKETCHFAB_DESC =
+  "Heniochus \u2014 A reef butterflyfish scanned in high detail by the Hue Museum of Heritages. Rotate and explore.";
+const SKETCHFAB_MODEL_BY = "Model by ";
+const SKETCHFAB_MUSEUM = "Hue Museum of Heritages";
+const SKETCHFAB_ON = "on Sketchfab";
 
 export function SketchfabModel() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -28,14 +35,13 @@ export function SketchfabModel() {
           className="text-center mb-10 md:mb-14"
         >
           <span className="inline-block px-3 py-0.5 rounded-full bg-[#e9c176]/15 text-[#e9c176] font-body text-[11px] font-[500] tracking-wider uppercase mb-4">
-            3D Species Scan
+            {SKETCHFAB_BADGE}
           </span>
           <h2 className="font-display text-[32px] md:text-[44px] leading-[1.15] tracking-[-0.02em] text-[#e5e2e1] mb-4">
-            Cá Thù Lù
+            {SKETCHFAB_TITLE}
           </h2>
           <p className="font-body text-[15px] md:text-[17px] leading-[1.7] font-[300] text-[#c3c8c2] max-w-xl mx-auto">
-            Heniochus — A reef butterflyfish scanned in high detail by the Hue
-            Museum of Heritages. Rotate and explore.
+            {SKETCHFAB_DESC}
           </p>
         </motion.div>
 
@@ -61,16 +67,16 @@ export function SketchfabModel() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-4 font-body text-[11px] text-white/20"
         >
-          Model by{" "}
+          {SKETCHFAB_MODEL_BY}
           <a
             href="https://sketchfab.com/hue-museum-of-heritages"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/30 hover:text-[#e9c176] transition-colors"
           >
-            Hue Museum of Heritages
+            {SKETCHFAB_MUSEUM}
           </a>{" "}
-          on Sketchfab
+          {SKETCHFAB_ON}
         </motion.p>
       </div>
     </section>

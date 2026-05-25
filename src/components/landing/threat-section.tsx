@@ -1,11 +1,16 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+
 import { ParticleSystem } from "./particle-system";
 
 const THREAT_BG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuA_Gi21JNTIy-ALaQII9HJoewR6DHPZd4VHQmE-c19f83m6hefbgcV8JnXOjhMgAZdX512rAaMsM_fste0IHadESemy86HeymtQU5XtrVYSaachHRD82vcrsly0AAicYaSDyhROFD0RQ-1dn9vUWvz3KX2wRVLJIq9-NlIK43Z0QEJl2dIar4auzUM2T_qpzzinRGtX5aDUFbiuVAqgbMTV8AWNQ6v4C3vpdtHMiPKOJy6VOVKbT4330AhrWywEqmNEVFhvAqdJbqI";
+
+const THREAT_HEADING = "The Edge of Existence";
+const THREAT_BODY =
+  "Habitat fragmentation. Illegal logging. Poaching snares that carpet the forest floor like deadly wire webs. The threats are invisible until the silence becomes absolute. We are witnessing the quiet erasure of millennia of evolution.";
 
 export function ThreatSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -62,14 +67,11 @@ export function ThreatSection() {
         </svg>
 
         <h2 className="font-display text-[48px] leading-[1.1] md:text-[72px] md:leading-[1.1] tracking-[-0.02em] text-[#e5e2e1] mb-[16px]">
-          The Edge of Existence
+          {THREAT_HEADING}
         </h2>
 
         <p className="font-body text-[18px] leading-[1.8] tracking-[0.01em] font-[300] text-[#c3c8c2] mb-[32px] max-w-2xl mx-auto">
-          Habitat fragmentation. Illegal logging. Poaching snares that carpet
-          the forest floor like deadly wire webs. The threats are invisible
-          until the silence becomes absolute. We are witnessing the quiet
-          erasure of millennia of evolution.
+          {THREAT_BODY}
         </p>
       </motion.div>
     </section>

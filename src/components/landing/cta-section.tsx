@@ -2,6 +2,11 @@
 
 import { motion } from "motion/react";
 
+const CTA_HEADING = "There is Still Time.";
+const CTA_BODY =
+  "Stand with the rangers. Support habitat restoration. Refuse to let the canopy vanish without a sound.";
+const CTA_BUTTON = "Protect the Silence";
+
 export function CTASection() {
   return (
     <section
@@ -33,12 +38,11 @@ export function CTASection() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
         <h2 className="font-display text-[32px] leading-[1.2] md:text-[40px] md:leading-[1.2] text-[#bec9c0] mb-[16px]">
-          There is Still Time.
+          {CTA_HEADING}
         </h2>
 
         <p className="font-body text-[16px] leading-[1.6] font-[300] text-[#c3c8c2] max-w-lg mx-auto mb-[32px]">
-          Stand with the rangers. Support habitat restoration. Refuse to let the
-          canopy vanish without a sound.
+          {CTA_BODY}
         </p>
 
         <motion.button
@@ -60,7 +64,7 @@ export function CTASection() {
             },
           }}
         >
-          Protect the Silence
+          {CTA_BUTTON}
         </motion.button>
       </motion.div>
     </section>

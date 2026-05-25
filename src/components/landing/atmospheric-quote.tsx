@@ -2,6 +2,9 @@
 
 import { motion } from "motion/react";
 
+const QUOTE_TEXT =
+  "Listen closely. Beneath the hum of the modern world, the ancient lungs of Southeast Asia are drawing shallow breaths. The primary forests of Vietnam, once a vast, emerald sea, are shrinking into isolated islands of mist and memory.";
+
 export function AtmosphericQuote() {
   return (
     <section className="py-[120px] px-[32px] bg-[#0e0e0e] relative z-10">
@@ -44,10 +47,7 @@ export function AtmosphericQuote() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
         >
-          Listen closely. Beneath the hum of the modern world, the ancient lungs
-          of Southeast Asia are drawing shallow breaths. The primary forests of
-          Vietnam, once a vast, emerald sea, are shrinking into isolated islands
-          of mist and memory.
+          {QUOTE_TEXT}
         </motion.p>
 
         <motion.div

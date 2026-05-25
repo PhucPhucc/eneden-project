@@ -1,10 +1,15 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+
 import { ParallaxLayer } from "./parallax-layer";
 
 const BACKGROUND_URL =
   "https://www.freud.org.uk/wp-content/uploads/2022/02/JuanCholo-CC-BY-SA-4.0.jpeg";
+
+const HERO_HEADING = "The Forest is Whispering... Goodbye.";
+const HERO_SUBTITLE =
+  "An immersive journey into the heart of Vietnam\u2019s disappearing primary forests.";
 
 const textVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -105,7 +110,7 @@ export function Hero() {
           initial="hidden"
           animate="visible"
         >
-          The Forest is Whispering... Goodbye.
+          {HERO_HEADING}
         </motion.h1>
         <motion.p
           className="font-body text-[18px] leading-[1.8] tracking-[0.01em] font-[300] text-[#c3c8c2] max-w-2xl mx-auto drop-shadow-md"
@@ -114,8 +119,7 @@ export function Hero() {
           initial="hidden"
           animate="visible"
         >
-          An immersive journey into the heart of Vietnam&apos;s disappearing
-          primary forests.
+          {HERO_SUBTITLE}
         </motion.p>
       </motion.div>
 
