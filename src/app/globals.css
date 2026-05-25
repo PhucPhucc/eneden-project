@@ -48,6 +48,11 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@theme {
+  --font-display: var(--font-eb-garamond), "EB Garamond", serif;
+  --font-body: var(--font-be-vietnam), "Be Vietnam Pro", sans-serif;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -127,4 +132,39 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Fog layer animation */
+.fog-layer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(200, 210, 200, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(200, 210, 200, 0.02) 0%, transparent 50%);
+  animation: drift 60s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(33.33%); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0e0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #353534;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #434844;
 }
