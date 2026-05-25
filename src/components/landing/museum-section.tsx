@@ -125,7 +125,8 @@ export function MuseumSection() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedId, setSelectedId] = useState(speciesList[0].id);
 
-  const selected = speciesList.find((s) => s.id === selectedId) ?? speciesList[0];
+  const selected =
+    speciesList.find((s) => s.id === selectedId) ?? speciesList[0];
 
   return (
     <section

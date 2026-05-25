@@ -11,7 +11,8 @@ export function CTASection() {
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(233,193,118,0.1) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(233,193,118,0.1) 0%, transparent 70%)",
         }}
         animate={{
           scale: [1, 1.15, 1],

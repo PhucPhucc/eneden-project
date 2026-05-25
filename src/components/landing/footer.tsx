@@ -23,7 +23,7 @@ export function Footer() {
               >
                 {link}
               </a>
-            )
+            ),
           )}
         </div>
       </div>

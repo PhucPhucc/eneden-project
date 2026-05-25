@@ -1,6 +1,11 @@
 "use client";
 
-import { useScroll, useMotionValueEvent, motion, AnimatePresence } from "motion/react";
+import {
+  useScroll,
+  useMotionValueEvent,
+  motion,
+  AnimatePresence,
+} from "motion/react";
 import { useState } from "react";
 
 const navLinks = [

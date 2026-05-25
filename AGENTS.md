@@ -29,12 +29,14 @@ pnpm lint         # ESLint v9 flat config
 ## ESLint — traps for agents
 
 Flat config (`eslint.config.mjs`). The rule `react/jsx-no-literals` is **strict — enabled** with `noStrings: true`. This means every JSX text string must be:
+
 - either in the `allowedStrings` array (punctuation only — `:`, `-`, `—`, `•`, `·`, `/`, `"`, `đ`), or
 - extracted to a constant/variable outside JSX (or via `children` prop, `dangerouslySetInnerHTML`, etc.)
 
 **Writing `<p>Some plain text</p>` directly in a component will fail lint.** Extract text into a `const` above the component or use `/* eslint-disable react/jsx-no-literals */` for demo/prototype code (but not in production files).
 
 Other enforced rules:
+
 - `simple-import-sort/imports` — imports must be sorted (auto-fixable)
 - `unused-imports/no-unused-imports` — deleting unused imports (auto-fixable)
 - `@next/next/no-img-element` — **disabled** (raw `<img>` allowed)
@@ -42,6 +44,7 @@ Other enforced rules:
 ## Tailwind CSS v4 — differences from v3
 
 **No `tailwind.config.js`.** All theme tokens are defined in `src/app/globals.css` via `@theme`:
+
 - Default font: `--font-sans` (Geist) via `next/font/google`
 - Custom fonts: `--font-display` (EB Garamond, serif), `--font-body` (Be Vietnam Pro, sans)
 - Class names: `font-display` and `font-body` (NOT `font-serif`/`font-sans`)
@@ -52,21 +55,22 @@ Other enforced rules:
 ## Import paths
 
 All component imports use `@/` → `./src/`:
+
 ```ts
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 ```
 
 ## Dependencies worth knowing
 
-| Package | Purpose |
-|---|---|
-| `motion` ^12 | Animations (imported from `motion/react`, NOT `framer-motion`) |
-| `zustand` ^5 | State management (installed but not used yet) |
-| `shadcn` / `radix-ui` | UI primitives (style: `radix-nova`) |
-| `sonner` | Toast notifications (installed but not used yet) |
-| `babel-plugin-react-compiler` | React Compiler — enabled via `next.config.ts` `reactCompiler: true` |
-| `tw-animate-css`, `tailwind-merge`, `clsx`, `class-variance-authority` | shadcn/ui toolchain |
+| Package                                                                | Purpose                                                             |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `motion` ^12                                                           | Animations (imported from `motion/react`, NOT `framer-motion`)      |
+| `zustand` ^5                                                           | State management (installed but not used yet)                       |
+| `shadcn` / `radix-ui`                                                  | UI primitives (style: `radix-nova`)                                 |
+| `sonner`                                                               | Toast notifications (installed but not used yet)                    |
+| `babel-plugin-react-compiler`                                          | React Compiler — enabled via `next.config.ts` `reactCompiler: true` |
+| `tw-animate-css`, `tailwind-merge`, `clsx`, `class-variance-authority` | shadcn/ui toolchain                                                 |
 
 ## Source structure
 

@@ -70,10 +70,12 @@ export function Hero() {
       <ParallaxLayer
         speed={0.15}
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 0%, rgba(233, 193, 118, 0.06) 0%, transparent 65%)",
-        } as React.CSSProperties}
+        style={
+          {
+            background:
+              "radial-gradient(ellipse at 50% 0%, rgba(233, 193, 118, 0.06) 0%, transparent 65%)",
+          } as React.CSSProperties
+        }
       />
 
       {/* Readability gradient — stays static */}

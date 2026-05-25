@@ -1,6 +1,11 @@
 "use client";
 
-import { useScroll, useMotionValueEvent, useTransform, motion } from "motion/react";
+import {
+  useScroll,
+  useMotionValueEvent,
+  useTransform,
+  motion,
+} from "motion/react";
 import { useRef, useState } from "react";
 import { ParticleSystem } from "./particle-system";
 import { ParallaxLayer } from "./parallax-layer";
@@ -99,7 +104,9 @@ export function ScrollStory() {
               speed={0}
               scrollY={layerScrollY}
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('${panel.bg}')` } as React.CSSProperties}
+              style={
+                { backgroundImage: `url('${panel.bg}')` } as React.CSSProperties
+              }
               animate={{ opacity: activeIndex === idx ? 0.35 : 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             />
@@ -206,7 +213,7 @@ export function ScrollStory() {
                 opacity: isActive ? 1 : 0,
                 scale: isActive ? 1 : isPast ? 0.95 : 0.95,
                 y: isActive ? 0 : isPast ? 20 : -20,
-                pointerEvents: isActive ? "auto" as const : "none" as const,
+                pointerEvents: isActive ? ("auto" as const) : ("none" as const),
               }}
               transition={{
                 duration: 0.6,

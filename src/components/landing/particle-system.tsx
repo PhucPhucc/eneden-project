@@ -46,7 +46,7 @@ export function ParticleSystem() {
           duration,
           easing: "linear",
           fill: "forwards",
-        }
+        },
       );
 
       container.appendChild(particle);

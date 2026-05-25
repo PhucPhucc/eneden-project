@@ -18,7 +18,7 @@ export function ThreatSection() {
   const desaturate = useTransform(
     scrollYProgress,
     [0.2, 0.6],
-    ["grayscale(0%) brightness(1)", "grayscale(100%) brightness(0.6)"]
+    ["grayscale(0%) brightness(1)", "grayscale(100%) brightness(0.6)"],
   );
 
   const textY = useTransform(scrollYProgress, [0, 0.5], ["40px", "0px"]);
