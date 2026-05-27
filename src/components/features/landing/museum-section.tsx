@@ -1,8 +1,9 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
-import { useInView } from "motion/react";
+import { AnimatePresence, motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
+
+import type { Dictionary } from "@/i18n/dictionaries";
 
 function TiltCard({
   children,
@@ -64,113 +65,68 @@ interface Species {
   description: string;
 }
 
-const speciesList: Species[] = [
-  {
-    id: "saola",
-    name: "Sao La",
-    scientificName: "Pseudoryx nghetinhensis",
-    status: "CR",
-    statusLabel: "Critically Endangered",
+const speciesAssets: Record<
+  string,
+  Pick<Species, "image" | "sketchfabId" | "statusColor">
+> = {
+  saola: {
     statusColor: "#dc2626",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuB43Xbwa16X-5I6aQwCCVxPh3Gvw7NHan0cJfu1Glmn5rIDmMjrkYRDFrUL6C1EHU_jvK4TzX0yl65TNxBFcBDKEjDrLW7XbBPrlkpvtYVQixv1M4K2ctP7bjp9CU2hP_aeism4N3bN1z8ZEDxO3aXaZtM1E-m1vqivKffTsdwK9ebv8CAMp1DEBC86muc33k3jcH5Sbrz1RCFNM-v0gG8YEucpSWUTS04qTRt1c8kS9lSYv6BO6O7j6hbO3UUDbaAZUY4EBc38rMg",
-    habitat: "Dãy Trường Sơn, Việt Nam & Lào",
-    discovered: "1992",
-    population: "Ước tính <100 cá thể",
-    description:
-      "Kỳ lân châu Á — một trong những loài thú hiếm nhất thế giới, được phát hiện năm 1992.",
   },
-  {
-    id: "ca-thu-lu",
-    name: "Cá Thù Lù",
-    scientificName: "Heniochus",
-    status: "VU",
-    statusLabel: "Vulnerable",
+  "ca-thu-lu": {
     statusColor: "#eab308",
     image:
       "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=600&q=80",
     sketchfabId: "a76eb200d5fc4100b4def2465c281010",
-    habitat: "Rạn san hô, miền Trung Việt Nam",
-    discovered: "—",
-    population: "Thiếu dữ liệu",
-    description:
-      "Cá bướm rạn san hô với vây lưng dài đặc trưng, hiện diện trong vùng biển Việt Nam.",
   },
-  {
-    id: "vooc-cat-ba",
-    name: "Voọc Cát Bà",
-    scientificName: "Trachypithecus poliocephalus",
-    status: "CR",
-    statusLabel: "Critically Endangered",
+  "vooc-cat-ba": {
     statusColor: "#dc2626",
     image:
       "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=600&q=80",
-    habitat: "Đảo Cát Bà, Hải Phòng",
-    discovered: "—",
-    population: "~60–70 cá thể",
-    description:
-      "Một trong những loài linh trưởng quý hiếm nhất Trái Đất, đặc hữu đảo Cát Bà.",
   },
-  {
-    id: "rua-ho-guom",
-    name: "Rùa Hồ Gươm",
-    scientificName: "Rafetus swinhoei",
-    status: "CR",
-    statusLabel: "Critically Endangered",
+  "rua-ho-guom": {
     statusColor: "#dc2626",
     image:
       "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600&q=80",
-    habitat: "Hồ Gươm & Hồ Đồng Mô",
-    discovered: "—",
-    population: "≤4 cá thể toàn cầu",
-    description:
-      "Rùa giải Hồ Gươm huyền thoại — biểu tượng của nền độc lập Việt Nam.",
   },
-  {
-    id: "te-te",
-    name: "Tê Tê Java",
-    scientificName: "Manis javanica",
-    status: "CR",
-    statusLabel: "Critically Endangered",
+  "te-te": {
     statusColor: "#dc2626",
     image:
       "https://images.unsplash.com/photo-1549366021-9f761d450615?w=600&q=80",
-    habitat: "Rừng thấp, Nam Việt Nam",
-    discovered: "—",
-    population: "Suy giảm nhanh chóng",
-    description:
-      "Tê tê Sunda — loài động vật bị buôn bán trái phép nhiều nhất thế giới.",
   },
-  {
-    id: "vuon-den",
-    name: "Vượn Đen Má Trắng",
-    scientificName: "Nomascus leucogenys",
-    status: "CR",
-    statusLabel: "Critically Endangered",
+  "vuon-den": {
     statusColor: "#dc2626",
     image:
       "https://images.unsplash.com/photo-1574598587234-0d6e43b4f3c1?w=600&q=80",
-    habitat: "Bắc Việt Nam & Lào",
-    discovered: "—",
-    population: "Ước tính <500 cá thể",
-    description:
-      "Vượn đen má trắng phương Bắc, nổi tiếng với tiếng hót buổi sáng đặc trưng.",
   },
-];
+};
 
-const MUSEUM_BADGE = "Vietnam Red Data Book";
-const MUSEUM_HEADING = "B\u1ea3o t\xe0ng S\xe1ch \u0110\u1ecf";
-const MUSEUM_DESC =
-  "C\xe1c lo\xe0i \u0111\u1ed9ng v\u1eadt qu\xfd hi\u1ebfm trong S\xe1ch \u0110\u1ecf Vi\u1ec7t Nam \u2014 m\u1ed7i lo\xe0i l\xe0 m\u1ed9t c\xe2u chuy\u1ec7n v\u1ec1 s\u1ef1 s\u1ed1ng \u0111ang d\u1ea7n bi\u1ebfn m\u1ea5t.";
-const MUSEUM_COMING_SOON = "3D MODEL COMING SOON";
+function getSpecies(dictionary: Dictionary["museum"]): Species[] {
+  return dictionary.species.map((species) => ({
+    ...species,
+    ...speciesAssets[species.id],
+  }));
+}
 
-export function MuseumSection() {
+interface MuseumSectionProps {
+  dictionary: Dictionary["museum"];
+}
+
+export function MuseumSection({ dictionary }: MuseumSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const speciesList = getSpecies(dictionary);
   const [selectedId, setSelectedId] = useState(speciesList[0].id);
 
   const selected =
-    speciesList.find((s) => s.id === selectedId) ?? speciesList[0];
+    speciesList.find((species) => species.id === selectedId) ?? speciesList[0];
+
+  const factItems = [
+    { label: dictionary.facts.habitat, value: selected.habitat },
+    { label: dictionary.facts.discovered, value: selected.discovered },
+    { label: dictionary.facts.population, value: selected.population },
+  ];
 
   return (
     <section
@@ -194,13 +150,13 @@ export function MuseumSection() {
           className="text-center mb-14"
         >
           <span className="inline-block px-3.5 py-1 rounded-full bg-white/5 text-white/40 font-body text-[10px] font-[500] tracking-[0.15em] uppercase mb-5">
-            {MUSEUM_BADGE}
+            {dictionary.badge}
           </span>
           <h2 className="font-display text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-[#e5e2e1] mb-3">
-            {MUSEUM_HEADING}
+            {dictionary.heading}
           </h2>
           <p className="font-body text-[15px] md:text-[17px] leading-[1.7] font-[300] text-[#c3c8c2] max-w-2xl mx-auto">
-            {MUSEUM_DESC}
+            {dictionary.description}
           </p>
         </motion.div>
 
@@ -215,12 +171,6 @@ export function MuseumSection() {
           >
             {speciesList.map((species) => {
               const isActive = species.id === selectedId;
-              const statusColors: Record<string, string> = {
-                CR: "#dc2626",
-                EN: "#f59e0b",
-                VU: "#eab308",
-              };
-              const sc = statusColors[species.status] ?? "#6b7280";
 
               return (
                 <TiltCard
@@ -251,8 +201,8 @@ export function MuseumSection() {
                       <span
                         className="text-[10px] font-[600] font-body px-1.5 py-0.5 rounded"
                         style={{
-                          color: sc,
-                          backgroundColor: `${sc}15`,
+                          color: species.statusColor,
+                          backgroundColor: `${species.statusColor}15`,
                         }}
                       >
                         {species.status}
@@ -296,7 +246,7 @@ export function MuseumSection() {
                     src={`https://sketchfab.com/models/${selected.sketchfabId}/embed?autospin=0.2&autostart=1&preload=1&ui_controls=1&ui_infos=0&ui_stop=0&ui_watermark=0&ui_watermark_link=0`}
                     className="absolute inset-0 w-full h-full"
                     allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
-                    title={`${selected.name} 3D Model`}
+                    title={`${selected.name} ${dictionary.modelTitle}`}
                   />
                 ) : (
                   <div
@@ -306,7 +256,7 @@ export function MuseumSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/20 to-transparent" />
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/5">
                       <span className="font-body text-[10px] text-white/40 tracking-[0.1em]">
-                        {MUSEUM_COMING_SOON}
+                        {dictionary.comingSoon}
                       </span>
                     </div>
                   </div>
@@ -342,11 +292,7 @@ export function MuseumSection() {
                 </p>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3 pt-2">
-                  {[
-                    { label: "Sinh cảnh", value: selected.habitat },
-                    { label: "Phát hiện", value: selected.discovered },
-                    { label: "Quần thể", value: selected.population },
-                  ].map((item) => (
+                  {factItems.map((item) => (
                     <div
                       key={item.label}
                       className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.04]"

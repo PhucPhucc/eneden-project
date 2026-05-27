@@ -8,6 +8,8 @@ import {
 } from "motion/react";
 import { useRef, useState } from "react";
 
+import type { Dictionary } from "@/i18n/dictionaries";
+
 import { ParallaxLayer } from "./parallax-layer";
 import { ParticleSystem } from "./particle-system";
 
@@ -33,46 +35,45 @@ interface Panel {
   panelClasses: string;
 }
 
-const panels: Panel[] = [
-  {
-    id: "intro",
-    label: "Ghosts of the Canopy",
-    title: "Giants of the Mist",
-    body: "Deep in the Annamite Range, creatures older than memory move through forests shrinking by the day. Each step brings us closer to the edge of their world — and ours.",
+const panelAssets: Record<
+  string,
+  Pick<Panel, "bg" | "position" | "panelClasses">
+> = {
+  intro: {
     bg: HERO_BG,
     position: "top-[15%] left-[8%] md:left-[15%]",
     panelClasses: "max-w-lg",
   },
-  {
-    id: "saola",
-    label: "Critically Endangered",
-    title: "The Saola",
-    body: "The 'Asian Unicorn' — discovered only in 1992. Fewer than 100 may remain. It slips through dense foliage like a spirit, a quiet observer of its vanishing realm.",
+  saola: {
     bg: SAOLA_IMG,
     position: "top-[22%] right-[8%] md:right-[10%]",
     panelClasses: "max-w-md",
   },
-  {
-    id: "langur",
-    label: "Endangered",
-    title: "Delacour's Langur",
-    body: "A strikingly patterned primate confined to isolated limestone karst forests. They watch the encroaching world from high ledges, their silence broken only by distant quarrying.",
+  langur: {
     bg: LANGUR_IMG,
     position: "bottom-[18%] left-[8%] md:left-[10%]",
     panelClasses: "max-w-md",
   },
-  {
-    id: "threats",
-    label: "The Edge of Existence",
-    title: "Fragmentation. Logging. Poaching.",
-    body: "The threats are invisible until the silence becomes absolute. We are witnessing the quiet erasure of millennia of evolution — unless we act now.",
+  threats: {
     bg: THREAT_BG,
     position: "top-[18%] right-[8%] md:right-[10%]",
     panelClasses: "max-w-lg",
   },
-];
+};
 
-export function ScrollStory() {
+function getPanels(dictionary: Dictionary["story"]): Panel[] {
+  return dictionary.panels.map((panel) => ({
+    ...panel,
+    ...panelAssets[panel.id],
+  }));
+}
+
+interface ScrollStoryProps {
+  dictionary: Dictionary["story"];
+}
+
+export function ScrollStory({ dictionary }: ScrollStoryProps) {
+  const panels = getPanels(dictionary);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
