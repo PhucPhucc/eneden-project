@@ -16,8 +16,8 @@ const navLinks = [
   { href: "#conservation", label: "Conservation" },
 ];
 
-const NAV_LOGO = "VC.";
-const NAV_TAGLINE = "Vanishing Canopies";
+const NAV_LOGO = "EXE";
+const NAV_TAGLINE = "EXE GR3";
 const NAV_LEARN = "Learn More";
 const NAV_PROTECT = "Protect Now";
 

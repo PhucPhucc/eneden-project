@@ -30,7 +30,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Vanishing Canopies",
+  title: "Eneden",
   description:
     "An immersive journey into the heart of Vietnam's disappearing primary forests.",
 };
