@@ -6,6 +6,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
+import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
@@ -51,13 +52,14 @@ export function Nav() {
         className="hidden lg:flex items-center justify-between px-5 h-14"
       >
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <span className="font-display text-[20px] tracking-[-0.03em] text-[#e9c176] leading-none">
-            {NAV_LOGO}
-          </span>
-          <span className="font-body text-[9px] tracking-[0.2em] uppercase text-white/20 font-[500] pt-[3px]">
-            {NAV_TAGLINE}
-          </span>
+        <a href="#" className="flex items-center shrink-0">
+          <Image
+            src="/eneden_logo_for_darkBG.png"
+            alt="VC Logo"
+            width={140}
+            height={44}
+            className="block h-auto"
+          />
         </a>
 
         {/* Center links */}
