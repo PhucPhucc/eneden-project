@@ -4,6 +4,51 @@ import { AnimatePresence, motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
 
+function TiltCard({
+  children,
+  className,
+  onClick,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const el = ref.current;
+    if (!el) return;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 14;
+    const y = -((e.clientY - top) / height - 0.5) * 14;
+    setTilt({ x, y });
+  }
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+      onClick={onClick}
+      style={{
+        perspective: "800px",
+        cursor: "pointer",
+      }}
+      className={className}
+    >
+      <motion.div
+        animate={{ rotateX: tilt.y, rotateY: tilt.x }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+        className="w-full h-full"
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
 interface Species {
   id: string;
   name: string;
@@ -178,12 +223,10 @@ export function MuseumSection() {
               const sc = statusColors[species.status] ?? "#6b7280";
 
               return (
-                <motion.button
+                <TiltCard
                   key={species.id}
                   onClick={() => setSelectedId(species.id)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`relative rounded-xl overflow-hidden text-left cursor-pointer border transition-all duration-400 bg-[#111111] ${
+                  className={`relative rounded-xl overflow-hidden text-left border transition-all duration-400 bg-[#111111] ${
                     isActive
                       ? "border-[#e9c176]/50 ring-1 ring-[#e9c176]/20"
                       : "border-white/[0.06] hover:border-white/15"
@@ -231,7 +274,7 @@ export function MuseumSection() {
                       transition={{ duration: 0.3 }}
                     />
                   )}
-                </motion.button>
+                </TiltCard>
               );
             })}
           </motion.div>
