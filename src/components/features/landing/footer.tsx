@@ -11,7 +11,7 @@ export function Footer({ dictionary }: FooterProps) {
     <footer className="w-full py-16 bg-[#0e0e0e] border-t border-[#434844]/20 relative z-10">
       <div className="flex justify-center mb-16">
         <Image
-          src={"/eneden_logo_for_darkBG.png"}
+          src={"/eneden_logo_for_darkBG.avif"}
           alt="Eneden"
           width={300}
           height={64}

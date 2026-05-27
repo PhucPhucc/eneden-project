@@ -185,7 +185,7 @@ export function Nav({ dictionary, language }: NavProps) {
         {/* Logo */}
         <a href="#" className="flex items-center shrink-0">
           <Image
-            src="/eneden_logo_for_darkBG.png"
+            src="/eneden_logo_for_darkBG.avif"
             alt={dictionary.logoAlt}
             width={140}
             height={44}
@@ -237,7 +237,7 @@ export function Nav({ dictionary, language }: NavProps) {
       >
         <a href="#" className="flex items-center shrink-0">
           <Image
-            src="/eneden_logo_for_darkBG.png"
+            src="/eneden_logo_for_darkBG.avif"
             alt={dictionary.logoAlt}
             width={120}
             height={44}
