@@ -58,7 +58,7 @@ export function Nav() {
             alt="VC Logo"
             width={140}
             height={44}
-            className="block h-auto"
+            className="block"
           />
         </a>
 
