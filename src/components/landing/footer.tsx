@@ -1,6 +1,6 @@
 const LOGO_TEXT = "{LOGO_TEXT}";
 const COPYRIGHT_TEXT =
-  "\u00a9 2024 Vanishing Canopies. Dedicated to the primary forests of Vietnam.";
+  "\u00a9 2026 EXE GR3. Dedicated to the primary forests of Vietnam.";
 const FOOTER_LINKS = ["Scientific Data", "Privacy Policy", "Contact Agency"];
 
 export function Footer() {
