@@ -98,10 +98,14 @@ export function Nav() {
         data-orientation="vertical"
         className="lg:hidden flex items-center justify-between px-4 h-13"
       >
-        <a href="#" className="flex items-center gap-2">
-          <span className="font-display text-[18px] tracking-[-0.03em] text-[#e9c176] leading-none">
-            {NAV_LOGO}
-          </span>
+        <a href="#" className="flex items-center shrink-0">
+          <Image
+            src="/eneden_logo_for_darkBG.png"
+            alt="VC Logo"
+            width={120}
+            height={44}
+            className="block"
+          />
         </a>
 
         <button
