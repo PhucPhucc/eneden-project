@@ -1,30 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eneden — Vanishing Canopies
 
-## Getting Started
+Immersive storytelling site about Vietnam's primary forest conservation and the Red Data Book.
 
-First, run the development server:
+- Next.js `16.2.6`
+- React `19.2.4`
+- Turbopack (via Next.js dev/build)
+- Tailwind CSS v4 + shadcn/ui primitives
+
+## Quick Start
 
 ```bash
+pnpm install
 pnpm dev
+pnpm build
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Default dev URL is typically `http://localhost:3000` unless a different port is provided at runtime.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `pnpm dev` - start dev server
+- `pnpm build` - production build
+- `pnpm start` - run production server
+- `pnpm lint` - run ESLint
+- `pnpm lint:fix` - run ESLint with autofix
+- `pnpm format` - format all files with Prettier
+- `pnpm format:check` - check Prettier formatting
+- `pnpm typecheck` - run TypeScript checks (`noEmit`)
 
-## Learn More
+## App Structure
 
-To learn more about Next.js, take a look at the following resources:
+The app is locale-routed under `src/app/[lang]`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/{lang}` - landing page
+- `/{lang}/details` - details stub
+- `/{lang}/map` - map stub
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Supported locales are defined in `src/i18n/config.ts`:
 
-## Deploy on Vercel
+- `vi` (default)
+- `en`
+- `zh`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If a request has no locale segment, `src/proxy.ts` redirects it to the default locale.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Layout
+
+```text
+src/
+  app/
+    [lang]/
+      layout.tsx
+      page.tsx
+      details/page.tsx
+      map/page.tsx
+    globals.css
+  components/
+    features/landing/
+    ui/
+  i18n/
+    config.ts
+    dictionaries.ts
+  lib/
+    utils.ts
+  proxy.ts
+```
+
+## Implementation Notes
+
+- UI copy is sourced from locale dictionaries (`src/i18n/dictionaries.ts`).
+- Landing experience is composed from feature components in `src/components/features/landing/`.
+- Fonts are loaded in `src/app/[lang]/layout.tsx` using `next/font/google`.
+
+## Development Rules
+
+This repository enforces formatting and linting strictly:
+
+1. Run `npx prettier --write <file>` (or `npx prettier --write .`) after edits.
+2. Run `pnpm lint` and fix all reported issues before finishing.
+
+Important lint rule: `react/jsx-no-literals` is strict. Avoid raw text literals directly in JSX unless allowed by config.
