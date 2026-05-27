@@ -82,6 +82,12 @@ export function ScrollStory() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const layerScrollY = useTransform(scrollYProgress, [0, 1], [0, 1000]);
+  const modelRotateY = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const modelFloatY = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    [-40, 40, -40, 40, -40],
+  );
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     const idx = Math.min(Math.floor(v * panels.length), panels.length - 1);
@@ -166,6 +172,50 @@ export function ScrollStory() {
 
         {/* Particle system overlay - only on threats panel */}
         {activeIndex === 3 && <ParticleSystem />}
+
+        {/* 3D rotating cube */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[5]">
+          <motion.div
+            animate={{ opacity: activeIndex === 3 ? 0.3 : 0.7 }}
+            transition={{ duration: 0.8 }}
+            style={{ perspective: 800 }}
+          >
+            <motion.div
+              style={{
+                rotateY: modelRotateY,
+                y: modelFloatY,
+                transformStyle: "preserve-3d",
+                width: 128,
+                height: 128,
+                position: "relative",
+              }}
+            >
+              {(
+                [
+                  { transform: "translateZ(64px)" },
+                  { transform: "rotateY(180deg) translateZ(64px)" },
+                  { transform: "rotateY(90deg) translateZ(64px)" },
+                  { transform: "rotateY(-90deg) translateZ(64px)" },
+                  { transform: "rotateX(90deg) translateZ(64px)" },
+                  { transform: "rotateX(-90deg) translateZ(64px)" },
+                ] as React.CSSProperties[]
+              ).map((faceStyle, i) => (
+                <div
+                  key={i}
+                  style={{
+                    ...faceStyle,
+                    position: "absolute",
+                    width: 128,
+                    height: 128,
+                    background: "rgba(233, 193, 118, 0.08)",
+                    border: "1px solid rgba(233, 193, 118, 0.35)",
+                    backfaceVisibility: "hidden",
+                  }}
+                />
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
 
         {/* Panel count indicator */}
         <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
